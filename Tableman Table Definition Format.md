@@ -4,34 +4,36 @@
 
 ```json
 {
-    "table_name": {
-        "column_name": {
-            "type": "string, tinyint, smallint, mediumint, integer, biginteger, decimal, double, enum, year, boolean, text, timestamp, date, uuid",
+    "name": "mytable",
+    "columns": [
+        {
+            "column_name": "mycolumn",
+            "type": "string, tinyint, smallint, mediumint, integer, biginteger, decimal, double, enum, year, boolean, text, timestamp, date",
             "traits": [
                 "autoincrement",
-                "first",
                 "unsigned",
-                "usecurrent"
+                "unique"
             ],
             "modifiers": {
-                "after": "column_name",
                 "charset": "utf8",
                 "collation": "utf8_unicode_ci",
                 "comment": "Comment text",
                 "nullable": true,
-                "stored_as": "MYSQL Expression",
-                "virtual_as": "MYSQL Expression",
                 "indexed_as": "index_name"
             }
-        },
-        "constraints": {
-            "column_name": {
-                "table": "table_name",
-                "column": "column_name",
-                "on_delete": "cascade etc..",
-                "on_update": "cascade etc.."
-            }
         }
+    ],
+    "constraints": [
+        {
+            "column_name": "mycolumn",
+            "foreign_table": "table_name",
+            "foreign_column": "column_name",
+            "on_delete": "cascade etc..",
+            "on_update": "cascade etc.."
+        }
+    ],
+    "modifiers": {
+        "primary_key": "column_name"
     }
 }
 ```

@@ -5,7 +5,7 @@ import (
 )
 
 func TestBuildTableDefinition(t *testing.T) {
-	expected := "CREATE TABLE testTable (id int unsigned auto_increment not null, testColumn2 varchar(255) not null, PRIMARY KEY (id));"
+	expected := "CREATE TABLE `testTable` (`id` int unsigned auto_increment not null, `testColumn2` varchar(255) not null, PRIMARY KEY (`id`));"
 	testColumn := &MySqlColumn{
 		Name:      "id",
 		Traits:    []string{"autoincrement", "unsigned"},
@@ -29,7 +29,7 @@ func TestBuildTableDefinition(t *testing.T) {
 	}
 }
 func TestBuildTableDefinition2(t *testing.T) {
-	expected := "CREATE TABLE testTable2 (id int unsigned auto_increment not null, testColumn2 varchar(255) not null, PRIMARY KEY (id), FOREIGN KEY (id) REFERENCES testTable(id) ON DELETE cascade ON UPDATE set null);"
+	expected := "CREATE TABLE `testTable2` (`id` int unsigned auto_increment not null, `testColumn2` varchar(255) not null, PRIMARY KEY (`id`), FOREIGN KEY (`id`) REFERENCES `testTable`(`id`) ON DELETE cascade ON UPDATE set null);"
 	testColumn := &MySqlColumn{
 		Name:      "id",
 		Traits:    []string{"autoincrement", "unsigned"},
@@ -60,7 +60,7 @@ func TestBuildTableDefinition2(t *testing.T) {
 	}
 }
 func TestBuildTableDefinition3(t *testing.T) {
-	expected := "CREATE TABLE testTable2 (id int unsigned auto_increment not null, testColumn2 varchar(255) not null, PRIMARY KEY (id), FOREIGN KEY (id) REFERENCES testTable(id) ON DELETE cascade ON UPDATE set null, INDEX testColumn2_ind (testColumn2));"
+	expected := "CREATE TABLE `testTable2` (`id` int unsigned auto_increment not null, `testColumn2` varchar(255) not null, PRIMARY KEY (`id`), FOREIGN KEY (`id`) REFERENCES `testTable`(`id`) ON DELETE cascade ON UPDATE set null, INDEX `testColumn2_ind` (`testColumn2`));"
 	testColumn := &MySqlColumn{
 		Name:      "id",
 		Traits:    []string{"autoincrement", "unsigned"},

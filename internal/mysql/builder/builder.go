@@ -35,72 +35,72 @@ func New(name string, size interface{}) MySqlColumnDefinitionBuilder {
 
 func (b MySqlColumnDefinitionBuilder) String() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s varchar(255)%s", b.Name, b.definition)
+	b.definition = fmt.Sprintf("`%s` varchar(255)%s", b.Name, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) TinyInt() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s tinyint%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` tinyint%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) SmallInt() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s smallint%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` smallint%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) MediumInt() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s mediumint%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` mediumint%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Int() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s int%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` int%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) BigInt() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s bigint%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` bigint%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Decimal() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s decimal%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` decimal%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Double() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s double%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` double%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Enum() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s enum%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` enum%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Year() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s year%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` year%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Bool() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s tinyint(1)%s", b.Name, b.definition)
+	b.definition = fmt.Sprintf("`%s` tinyint(1)%s", b.Name, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Text() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s text%s%s", b.Name, b.Size, b.definition)
+	b.definition = fmt.Sprintf("`%s` text%s%s", b.Name, b.Size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Timestamp() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s timestamp%s", b.Name, b.definition)
+	b.definition = fmt.Sprintf("`%s` timestamp%s", b.Name, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Date() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("%s date%s", b.Name, b.definition)
+	b.definition = fmt.Sprintf("`%s` date%s", b.Name, b.definition)
 	return b
 }
 

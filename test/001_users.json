@@ -1,0 +1,42 @@
+{
+    "name": "users",
+    "columns": [
+        {
+            "column_name": "id",
+            "type": "int",
+            "traits": [
+                "unsigned",
+                "autoincrement"
+            ],
+            "modifiers": {
+                "comment": "Id of the user"
+            }
+        },
+        {
+            "column_name": "name",
+            "type": "string",
+            "traits": [],
+            "modifiers": {
+                "comment": "This field contains a name for user",
+                "nullable": true,
+                "indexed_as": "name_ind"
+            }
+        },
+        {
+            "column_name": "email",
+            "type": "string",
+            "traits": [],
+            "modifiers": {
+                "comment": "Email of the user",
+                "indexed_as": "email_ind"
+            }
+        },
+        {
+            "column_name": "password",
+            "type": "string"
+        }
+    ],
+    "modifiers": {
+        "primary_key": "id"
+    }
+}

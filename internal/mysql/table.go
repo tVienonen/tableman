@@ -19,7 +19,7 @@ type MySqlConstraint struct {
 }
 
 func (t *MySqlTable) BuildTableDefinition() string {
-	definition := fmt.Sprintf("CREATE TABLE %s ()", t.Name)
+	definition := fmt.Sprintf("CREATE TABLE `%s` ()", t.Name)
 	pos := len(definition) - 1
 	// Add column declarations
 	for i, column := range t.Columns {
@@ -35,7 +35,7 @@ func (t *MySqlTable) BuildTableDefinition() string {
 	}
 	// Add modifiers
 	if val, ok := t.Modifiers["primary_key"]; ok {
-		modifier := fmt.Sprintf(", PRIMARY KEY (%s)", val.(string))
+		modifier := fmt.Sprintf(", PRIMARY KEY (`%s`)", val.(string))
 		definition = definition[:pos] + modifier + definition[pos:]
 		pos += len(modifier)
 	}
@@ -51,7 +51,7 @@ func (t *MySqlTable) BuildTableDefinition() string {
 		if constraint.OnUpdate != "" {
 			onUpdate = fmt.Sprintf("ON UPDATE %s", constraint.OnUpdate)
 		}
-		constraintDefinition := fmt.Sprintf(", FOREIGN KEY (%s) REFERENCES %s(%s) %s %s",
+		constraintDefinition := fmt.Sprintf(", FOREIGN KEY (`%s`) REFERENCES `%s`(`%s`) %s %s",
 			constraint.ColumnName,
 			constraint.ForeignTable,
 			constraint.ForeignColumn,
@@ -63,7 +63,7 @@ func (t *MySqlTable) BuildTableDefinition() string {
 	// Add indices
 	for _, column := range t.Columns {
 		if val, ok := column.Modifiers["indexed_as"]; ok {
-			index := fmt.Sprintf(", INDEX %s (%s)", val.(string), column.Name)
+			index := fmt.Sprintf(", INDEX `%s` (`%s`)", val.(string), column.Name)
 			definition = definition[:pos] + index + definition[pos:]
 			pos += len(index)
 		}

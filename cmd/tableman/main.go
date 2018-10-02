@@ -1,12 +1,11 @@
 package main
 
 import (
-	"encoding/json"
+	"database/sql"
 	"fmt"
-	"io/ioutil"
 	"os"
 
-	"gitlab.com/topivienonen/tableman/internal/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -17,41 +16,35 @@ func main() {
 	}
 	fmt.Println("Tableman is starting...")
 	tableDefinitionDirectory := os.Args[1]
+	tables := GetTableDefinitionFiles(tableDefinitionDirectory)
 
-	dirStats, err := os.Stat(tableDefinitionDirectory)
+	user := os.Getenv("TABLEMAN_USER")
+	pw := os.Getenv("TABLEMAN_PASS")
+	db := os.Getenv("TABLEMAN_DB_NAME")
+	host := os.Getenv("TABLEMAN_HOST")
+	port := "3306"
+	if val, ok := os.LookupEnv("TABLEMAN_PORT"); ok {
+		port = val
+	}
 
+	dbClient, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s",
+		user,
+		pw,
+		host,
+		port,
+		db))
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(2)
 	}
-	if !dirStats.IsDir() {
-		fmt.Println("First argument is not a valid directory")
-		os.Exit(3)
-	}
-	files, err := ioutil.ReadDir(tableDefinitionDirectory)
-	if err != nil {
-		fmt.Println(err)
-		os.Exit(3)
-	}
-	for i := range files {
-		if files[i].IsDir() {
-			continue
-		}
-		file, err := os.Open(
-			fmt.Sprintf("%s%s", tableDefinitionDirectory, files[i].Name()))
+	defer dbClient.Close()
+	for _, table := range tables {
+		definition := table.BuildTableDefinition()
+		_, err := dbClient.Exec(definition)
 		if err != nil {
 			fmt.Println(err)
-			continue
+		} else {
+			fmt.Printf("Created table %s successfully\n", table.Name)
 		}
-		content, err := ioutil.ReadAll(file)
-		if err != nil {
-			fmt.Println(err)
-			continue
-		}
-		table := mysql.MySqlTable{}
-		json.Unmarshal(content, &table)
-		first_column := table.Columns[0]
-
-		fmt.Println(table, first_column)
 	}
 }

@@ -8,7 +8,7 @@ var cases = []struct {
 	ShouldPanic bool
 }{
 	{
-		Expected: "testColumn varchar(255) not null",
+		Expected: "`testColumn` varchar(255) not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn",
 			Traits:    make([]string, 0),
@@ -16,7 +16,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn2 tinyint(3) not null",
+		Expected: "`testColumn2` tinyint(3) not null",
 		TestColumn: &MySqlColumn{
 			Name:   "testColumn2",
 			Traits: make([]string, 0),
@@ -25,7 +25,7 @@ var cases = []struct {
 				"size": 3}},
 	},
 	{
-		Expected: "testColumn3 int not null",
+		Expected: "`testColumn3` int not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    make([]string, 0),
@@ -33,7 +33,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 int not null",
+		Expected: "`testColumn3` int not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    make([]string, 0),
@@ -41,7 +41,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 smallint not null",
+		Expected: "`testColumn3` smallint not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    make([]string, 0),
@@ -49,7 +49,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 mediumint not null",
+		Expected: "`testColumn3` mediumint not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    make([]string, 0),
@@ -66,7 +66,7 @@ var cases = []struct {
 		ShouldPanic: true,
 	},
 	{
-		Expected: "testColumn3 int unsigned auto_increment not null",
+		Expected: "`testColumn3` int unsigned auto_increment not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{"autoincrement", "unsigned"},
@@ -74,7 +74,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 bigint unsigned auto_increment not null",
+		Expected: "`testColumn3` bigint unsigned auto_increment not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{"autoincrement", "unsigned"},
@@ -82,7 +82,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 decimal not null",
+		Expected: "`testColumn3` decimal not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
@@ -90,7 +90,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 double not null",
+		Expected: "`testColumn3` double not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
@@ -98,7 +98,7 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
-		Expected: "testColumn3 enum('A', 'B') not null",
+		Expected: "`testColumn3` enum('A', 'B') not null",
 		TestColumn: &MySqlColumn{
 			Name:   "testColumn3",
 			Traits: []string{},
@@ -107,7 +107,7 @@ var cases = []struct {
 				"size": "'A', 'B'"}},
 	},
 	{
-		Expected: "testColumn3 year not null",
+		Expected: "`testColumn3` year not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
@@ -115,7 +115,7 @@ var cases = []struct {
 			Modifiers: map[string]interface{}{}},
 	},
 	{
-		Expected: "testColumn3 tinyint(1) not null",
+		Expected: "`testColumn3` tinyint(1) not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
@@ -123,7 +123,7 @@ var cases = []struct {
 			Modifiers: map[string]interface{}{}},
 	},
 	{
-		Expected: "testColumn3 text not null",
+		Expected: "`testColumn3` text not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
@@ -131,7 +131,7 @@ var cases = []struct {
 			Modifiers: map[string]interface{}{}},
 	},
 	{
-		Expected: "testColumn3 timestamp not null",
+		Expected: "`testColumn3` timestamp not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
@@ -139,7 +139,7 @@ var cases = []struct {
 			Modifiers: map[string]interface{}{}},
 	},
 	{
-		Expected: "testColumn3 date not null",
+		Expected: "`testColumn3` date not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},

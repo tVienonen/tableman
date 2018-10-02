@@ -1,0 +1,45 @@
+{
+    "name": "cars",
+    "columns": [
+        {
+            "column_name": "id",
+            "type": "int",
+            "traits": [
+                "unsigned",
+                "autoincrement"
+            ]
+        },
+        {
+            "column_name": "car_name",
+            "type": "string",
+            "modifiers": {
+                "comment": "Name of the car",
+                "nullable": true,
+                "indexed_as": "car_name_ind"
+            }
+        },
+        {
+            "column_name": "owner_id",
+            "type": "integer",
+            "traits": [
+                "unsigned"
+            ],
+            "modifiers": {
+                "comment": "User id of the car owner",
+                "nullable": true
+            }
+        }
+    ],
+    "modifiers": {
+        "primary_key": "id"
+    },
+    "constraints": [
+        {
+            "column_name": "owner_id",
+            "foreign_table": "users",
+            "foreign_column": "id",
+            "on_delete": "set null",
+            "on_update": "cascade"
+        }
+    ]
+}
