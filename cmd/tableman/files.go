@@ -9,7 +9,7 @@ import (
 	p "path"
 	"strings"
 
-	"gitlab.com/topivienonen/tableman/internal/mysql"
+	"github.com/tVienonen/tableman/internal/mysql"
 )
 
 func GetTableDefinitionFiles(path string) []mysql.MySqlTable {

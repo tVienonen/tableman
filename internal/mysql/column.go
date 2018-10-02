@@ -3,7 +3,7 @@ package mysql
 import (
 	"fmt"
 
-	"gitlab.com/topivienonen/tableman/internal/mysql/builder"
+	"github.com/tVienonen/tableman/internal/mysql/builder"
 )
 
 type MySqlColumn struct {
