@@ -10,6 +10,13 @@ type MySqlTable struct {
 	Constraints []MySqlConstraint      `json:"constraints"`
 	Modifiers   map[string]interface{} `json:"modifiers"`
 }
+type MySqlConstraint struct {
+	ColumnName    string `json:"column_name"`
+	ForeignTable  string `json:"foreign_table"`
+	ForeignColumn string `json:"foreign_column"`
+	OnDelete      string `json:"on_delete"`
+	OnUpdate      string `json:"on_update"`
+}
 
 func (t *MySqlTable) BuildTableDefinition() string {
 	definition := fmt.Sprintf("CREATE TABLE %s ()", t.Name)
