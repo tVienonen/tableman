@@ -12,6 +12,8 @@ func main() {
 	// Define command line flags
 	if len(os.Args) <= 1 {
 		fmt.Println("This program expects first argument to be a path to a directory containing the table definition files")
+		fmt.Printf("USAGE:\n\n")
+		fmt.Printf("TABLEMAN_USER=<db-user>\\\nTABLEMAN_PASS=<db-pass>\\\nTABLEMAN_DB_NAME=<db-name>\\\nTABLEMAN_HOST=<db-host>\\\nTABLEMAN_PORT=<optional-port> || 3306\\\ntableman <path-to-table-definitions-directory>\n")
 		os.Exit(1)
 	}
 	fmt.Println("Tableman is starting...")
