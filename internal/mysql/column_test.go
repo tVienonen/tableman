@@ -16,6 +16,14 @@ var cases = []struct {
 			Modifiers: make(map[string]interface{}, 0)},
 	},
 	{
+		Expected: "`testColumn` varchar(800) not null",
+		TestColumn: &MySqlColumn{
+			Name:      "testColumn",
+			Traits:    []string{},
+			Type:      "string",
+			Modifiers: map[string]interface{}{"size": float64(800)}},
+	},
+	{
 		Expected: "`testColumn2` tinyint(3) not null",
 		TestColumn: &MySqlColumn{
 			Name:   "testColumn2",

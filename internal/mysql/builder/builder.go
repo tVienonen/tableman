@@ -24,6 +24,8 @@ func New(name string, size interface{}) MySqlColumnDefinitionBuilder {
 		switch v := size.(type) {
 		case int:
 			_size = fmt.Sprintf("(%d)", v)
+		case float64:
+			_size = fmt.Sprintf("(%d)", int(v))
 		case string:
 			_size = fmt.Sprintf("(%s)", v)
 		}
@@ -37,9 +39,9 @@ func (b MySqlColumnDefinitionBuilder) String() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
 	size := b.Size
 	if size == "" {
-		size = "255"
+		size = "(255)"
 	}
-	b.definition = fmt.Sprintf("`%s` varchar(%s)%s", b.Name, size, b.definition)
+	b.definition = fmt.Sprintf("`%s` varchar%s%s", b.Name, size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) TinyInt() MySqlColumnDefinitionBuilder {
