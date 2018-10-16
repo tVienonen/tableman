@@ -35,7 +35,11 @@ func New(name string, size interface{}) MySqlColumnDefinitionBuilder {
 
 func (b MySqlColumnDefinitionBuilder) String() MySqlColumnDefinitionBuilder {
 	b.padDefinition()
-	b.definition = fmt.Sprintf("`%s` varchar(255)%s", b.Name, b.definition)
+	size := b.Size
+	if size == "" {
+		size = "255"
+	}
+	b.definition = fmt.Sprintf("`%s` varchar(%s)%s", b.Name, size, b.definition)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) TinyInt() MySqlColumnDefinitionBuilder {
