@@ -139,12 +139,22 @@ var cases = []struct {
 			Modifiers: map[string]interface{}{}},
 	},
 	{
-		Expected: "`testColumn3` timestamp not null",
+		Expected: "`testColumn3` timestamp DEFAULT CURRENT_TIMESTAMP not null",
 		TestColumn: &MySqlColumn{
 			Name:      "testColumn3",
 			Traits:    []string{},
 			Type:      "timestamp",
 			Modifiers: map[string]interface{}{}},
+	},
+	{
+		Expected: "`testColumn3` timestamp DEFAULT CURRENT_TIMESTAMP not null",
+		TestColumn: &MySqlColumn{
+			Name:   "testColumn3",
+			Traits: []string{},
+			Type:   "timestamp",
+			Modifiers: map[string]interface{}{
+				"column_arguments": []string{"DEFAULT CURRENT_TIMESTAMP"},
+			}},
 	},
 	{
 		Expected: "`testColumn3` date not null",

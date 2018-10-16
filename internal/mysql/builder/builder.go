@@ -99,9 +99,14 @@ func (b MySqlColumnDefinitionBuilder) Text() MySqlColumnDefinitionBuilder {
 	b.definition = fmt.Sprintf("`%s` text%s%s", b.Name, b.Size, b.definition)
 	return b
 }
-func (b MySqlColumnDefinitionBuilder) Timestamp() MySqlColumnDefinitionBuilder {
-	b.padDefinition()
-	b.definition = fmt.Sprintf("`%s` timestamp%s", b.Name, b.definition)
+func (b MySqlColumnDefinitionBuilder) Timestamp(args ...string) MySqlColumnDefinitionBuilder {
+	timestampAttributes := s.Join(args, " ")
+	if len(timestampAttributes) > 0 {
+		timestampAttributes = " " + timestampAttributes
+	} else {
+		timestampAttributes = " " + "DEFAULT CURRENT_TIMESTAMP"
+	}
+	b.definition = fmt.Sprintf("`%s` timestamp%s", b.Name, timestampAttributes)
 	return b
 }
 func (b MySqlColumnDefinitionBuilder) Date() MySqlColumnDefinitionBuilder {

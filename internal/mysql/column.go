@@ -61,7 +61,11 @@ func (m *MySqlColumn) BuildColumnDefinition() string {
 		b = b.Text()
 		break
 	case "timestamp":
-		b = b.Timestamp()
+		var args []string
+		if v, ok := m.Modifiers["column_arguments"]; ok {
+			args = v.([]string)
+		}
+		b = b.Timestamp(args...)
 		break
 	case "date":
 		b = b.Date()
